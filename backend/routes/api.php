@@ -25,3 +25,12 @@ Route::get('matches/results/list', [SoccerMatchController::class, 'results']);
 
 // News
 Route::apiResource('news', NewsController::class);
+
+// External API Integration
+use App\Http\Controllers\ApiFootballController;
+Route::prefix('external')->group(function () {
+    Route::get('info', [ApiFootballController::class, 'info']);
+    Route::post('fetch-leagues', [ApiFootballController::class, 'fetchLeagues']);
+    Route::post('fetch-teams', [ApiFootballController::class, 'fetchTeams']);
+    Route::post('fetch-matches', [ApiFootballController::class, 'fetchMatches']);
+});
